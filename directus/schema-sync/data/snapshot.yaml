@@ -1,0 +1,392 @@
+version: 1
+directus: 11.x.x
+
+collections:
+  - collection: zalo_users
+    meta:
+      icon: user
+    schema:
+      name: zalo_users
+  - collection: zalo_groups
+    meta:
+      icon: users
+    schema:
+      name: zalo_groups
+  - collection: zalo_group_members
+    meta:
+      icon: user-friends
+    schema:
+      name: zalo_group_members
+  - collection: zalo_conversations
+    meta:
+      icon: comments
+    schema:
+      name: zalo_conversations
+  - collection: zalo_messages
+    meta:
+      icon: comment
+    schema:
+      name: zalo_messages
+  - collection: zalo_attachments
+    meta:
+      icon: paperclip
+    schema:
+      name: zalo_attachments
+  - collection: zalo_reactions
+    meta:
+      icon: smile
+    schema:
+      name: zalo_reactions
+  - collection: zalo_labels
+    meta:
+      icon: tag
+    schema:
+      name: zalo_labels
+  - collection: zalo_conversation_labels
+    meta:
+      icon: bookmark
+    schema:
+      name: zalo_conversation_labels
+  - collection: zalo_quick_messages
+    meta:
+      icon: bolt
+    schema:
+      name: zalo_quick_messages
+  - collection: zalo_sync_status
+    meta:
+      icon: sync
+    schema:
+      name: zalo_sync_status
+
+fields:
+  # zalo_users
+  - collection: zalo_users
+    field: id
+    type: string
+    schema:
+      is_primary_key: true
+  - collection: zalo_users
+    field: display_name
+    type: string
+  - collection: zalo_users
+    field: zalo_name
+    type: string
+  - collection: zalo_users
+    field: avatar_url
+    type: string
+  - collection: zalo_users
+    field: cover_url
+    type: string
+  - collection: zalo_users
+    field: gender
+    type: string
+  - collection: zalo_users
+    field: date_of_birth
+    type: date
+  - collection: zalo_users
+    field: status_message
+    type: text
+  - collection: zalo_users
+    field: is_friend
+    type: boolean
+  - collection: zalo_users
+    field: alias
+    type: string
+  - collection: zalo_users
+    field: last_online
+    type: datetime
+  - collection: zalo_users
+    field: raw_data
+    type: json
+
+  # zalo_groups
+  - collection: zalo_groups
+    field: id
+    type: string
+    schema:
+      is_primary_key: true
+  - collection: zalo_groups
+    field: name
+    type: string
+  - collection: zalo_groups
+    field: avatar_url
+    type: string
+  - collection: zalo_groups
+    field: description
+    type: text
+  - collection: zalo_groups
+    field: owner_id
+    type: string
+  - collection: zalo_groups
+    field: total_members
+    type: integer
+  - collection: zalo_groups
+    field: invite_link
+    type: text
+  - collection: zalo_groups
+    field: created_at_zalo
+    type: datetime
+  - collection: zalo_groups
+    field: settings
+    type: json
+
+  # zalo_group_members
+  - collection: zalo_group_members
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+  - collection: zalo_group_members
+    field: group_id
+    type: string
+  - collection: zalo_group_members
+    field: user_id
+    type: string
+  - collection: zalo_group_members
+    field: role
+    type: string
+  - collection: zalo_group_members
+    field: joined_at
+    type: datetime
+  - collection: zalo_group_members
+    field: left_at
+    type: datetime
+  - collection: zalo_group_members
+    field: is_active
+    type: boolean
+
+  # zalo_conversations
+  - collection: zalo_conversations
+    field: id
+    type: string
+    schema:
+      is_primary_key: true
+  - collection: zalo_conversations
+    field: type
+    type: string
+  - collection: zalo_conversations
+    field: participant_id
+    type: string
+  - collection: zalo_conversations
+    field: group_id
+    type: string
+  - collection: zalo_conversations
+    field: last_message_id
+    type: string
+  - collection: zalo_conversations
+    field: last_message_time
+    type: datetime
+  - collection: zalo_conversations
+    field: is_pinned
+    type: boolean
+  - collection: zalo_conversations
+    field: is_archived
+    type: boolean
+  - collection: zalo_conversations
+    field: is_hidden
+    type: boolean
+  - collection: zalo_conversations
+    field: is_muted
+    type: boolean
+  - collection: zalo_conversations
+    field: unread_count
+    type: integer
+  - collection: zalo_conversations
+    field: last_read_message_time
+    type: datetime
+  - collection: zalo_conversations
+    field: settings
+    type: json
+
+  # zalo_messages
+  - collection: zalo_messages
+    field: id
+    type: string
+    schema:
+      is_primary_key: true
+  - collection: zalo_messages
+    field: client_id
+    type: string
+  - collection: zalo_messages
+    field: conversation_id
+    type: string
+  - collection: zalo_messages
+    field: sender_id
+    type: string
+  - collection: zalo_messages
+    field: content
+    type: text
+  - collection: zalo_messages
+    field: type
+    type: string
+  - collection: zalo_messages
+    field: sent_at
+    type: datetime
+  - collection: zalo_messages
+    field: received_at
+    type: datetime
+  - collection: zalo_messages
+    field: is_undone
+    type: boolean
+  - collection: zalo_messages
+    field: is_edited
+    type: boolean
+  - collection: zalo_messages
+    field: edited_at
+    type: datetime
+  - collection: zalo_messages
+    field: reply_to_message_id
+    type: string
+  - collection: zalo_messages
+    field: forward_from_message_id
+    type: string
+  - collection: zalo_messages
+    field: mentions
+    type: json
+  - collection: zalo_messages
+    field: raw_data
+    type: json
+
+  # zalo_attachments
+  - collection: zalo_attachments
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+  - collection: zalo_attachments
+    field: message_id
+    type: string
+  - collection: zalo_attachments
+    field: type
+    type: string
+  - collection: zalo_attachments
+    field: url
+    type: text
+  - collection: zalo_attachments
+    field: thumbnail_url
+    type: text
+  - collection: zalo_attachments
+    field: file_name
+    type: string
+  - collection: zalo_attachments
+    field: file_size
+    type: bigInteger
+  - collection: zalo_attachments
+    field: mime_type
+    type: string
+  - collection: zalo_attachments
+    field: width
+    type: integer
+  - collection: zalo_attachments
+    field: height
+    type: integer
+  - collection: zalo_attachments
+    field: duration
+    type: integer
+  - collection: zalo_attachments
+    field: metadata
+    type: json
+
+  # zalo_reactions
+  - collection: zalo_reactions
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+  - collection: zalo_reactions
+    field: message_id
+    type: string
+  - collection: zalo_reactions
+    field: user_id
+    type: string
+  - collection: zalo_reactions
+    field: reaction_icon
+    type: string
+  - collection: zalo_reactions
+    field: created_at
+    type: datetime
+
+  # zalo_labels
+  - collection: zalo_labels
+    field: id
+    type: string
+    schema:
+      is_primary_key: true
+  - collection: zalo_labels
+    field: name
+    type: string
+  - collection: zalo_labels
+    field: color_hex
+    type: string
+  - collection: zalo_labels
+    field: description
+    type: text
+  - collection: zalo_labels
+    field: is_system
+    type: boolean
+
+  # zalo_conversation_labels
+  - collection: zalo_conversation_labels
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+  - collection: zalo_conversation_labels
+    field: conversation_id
+    type: string
+  - collection: zalo_conversation_labels
+    field: label_id
+    type: string
+  - collection: zalo_conversation_labels
+    field: applied_at
+    type: datetime
+
+  # zalo_quick_messages
+  - collection: zalo_quick_messages
+    field: id
+    type: string
+    schema:
+      is_primary_key: true
+  - collection: zalo_quick_messages
+    field: keyword
+    type: string
+  - collection: zalo_quick_messages
+    field: title
+    type: text
+  - collection: zalo_quick_messages
+    field: content
+    type: text
+  - collection: zalo_quick_messages
+    field: media_attachment
+    type: json
+  - collection: zalo_quick_messages
+    field: is_active
+    type: boolean
+  - collection: zalo_quick_messages
+    field: usage_count
+    type: integer
+  - collection: zalo_quick_messages
+    field: last_used_at
+    type: datetime
+
+  # zalo_sync_status
+  - collection: zalo_sync_status
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+  - collection: zalo_sync_status
+    field: conversation_id
+    type: string
+  - collection: zalo_sync_status
+    field: last_sync_at
+    type: datetime
+  - collection: zalo_sync_status
+    field: last_message_id_synced
+    type: string
+  - collection: zalo_sync_status
+    field: is_syncing
+    type: boolean
+  - collection: zalo_sync_status
+    field: sync_errors
+    type: json
